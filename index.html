@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practicum Work Sample | Organizational Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1B2A5E;
+      --navy2:   #263872;
+      --teal:    #0E7E74;
+      --teal-lt: #12A99B;
+      --sand:    #F5F0E8;
+      --cream:   #FDFBF7;
+      --orange:  #E07A30;
+      --text:    #1C1C2E;
+      --muted:   #5C6380;
+      --border:  #DDD8CC;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,251,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      padding: 100px 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(14,126,116,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(38,56,114,0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 900px; margin: 0 auto; position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(14,126,116,0.2);
+      border: 1px solid rgba(14,126,116,0.4);
+      color: var(--teal-lt);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2rem;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--teal-lt);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .meta-chip {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+    .meta-chip span.dot {
+      width: 6px; height: 6px;
+      background: var(--teal-lt);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: fadeUp 0.7s 0.6s ease both;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── OVERVIEW ── */
+    #overview { background: var(--cream); }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .overview-card {
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .overview-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-lt));
+    }
+    .card-icon {
+      font-size: 1.6rem; margin-bottom: 0.8rem;
+    }
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      color: var(--teal-lt);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    /* ── METHODOLOGY ── */
+    #methodology { background: var(--sand); }
+    .method-steps {
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+    }
+    .method-steps::before {
+      content: '';
+      position: absolute; left: 24px; top: 28px; bottom: 28px; width: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--border));
+    }
+    .method-step {
+      display: flex; gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.2rem 0;
+      position: relative;
+    }
+    .step-dot {
+      width: 50px; height: 50px; flex-shrink: 0;
+      background: var(--cream);
+      border: 2px solid var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      position: relative; z-index: 1;
+    }
+    .step-content {}
+    .step-title {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .step-tag {
+      display: inline-block;
+      background: rgba(14,126,116,0.1);
+      color: var(--teal);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      margin-top: 0.4rem;
+    }
+
+    /* ── FINDINGS ── */
+    #findings { background: var(--cream); }
+    .findings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .finding-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      background: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .finding-card:hover {
+      box-shadow: 0 8px 30px rgba(27,42,94,0.08);
+      transform: translateY(-2px);
+    }
+    .finding-card.highlight {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .finding-card.highlight .finding-title,
+    .finding-card.highlight .finding-body { color: rgba(255,255,255,0.85); }
+    .finding-card.highlight .finding-title { color: #fff; }
+    .finding-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .finding-card.highlight .finding-num { color: var(--teal-lt); }
+    .finding-title {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+    .finding-body {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .qualitative-box {
+      background: var(--sand);
+      border-left: 4px solid var(--orange);
+      border-radius: 0 10px 10px 0;
+      padding: 1.5rem 1.8rem;
+      margin-top: 1.5rem;
+    }
+    .qualitative-box h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .theme-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .theme-list li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .theme-list li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--orange);
+      font-size: 0.85rem;
+    }
+
+    /* ── RECOMMENDATIONS ── */
+    #recommendations { background: var(--navy); }
+    #recommendations .section-label { color: var(--teal-lt); }
+    #recommendations .section-title { color: #fff; }
+    #recommendations .section-intro { color: rgba(255,255,255,0.55); }
+    .rec-list {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .rec-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      display: flex; gap: 1.4rem; align-items: flex-start;
+      transition: background 0.2s;
+    }
+    .rec-item:hover { background: rgba(255,255,255,0.09); }
+    .rec-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--teal-lt);
+      opacity: 0.4;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2rem;
+    }
+    .rec-content {}
+    .rec-title {
+      font-weight: 600;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .rec-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--sand); }
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+    .skill-tag {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2rem;
+      transition: all 0.2s;
+    }
+    .skill-tag:hover {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    .skill-tag.primary {
+      background: var(--teal);
+      color: #fff;
+      border-color: var(--teal);
+    }
+
+    /* ── SLIDES ── */
+    #slides { background: var(--cream); }
+    .slides-placeholder {
+      background: var(--sand);
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .slides-placeholder p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .slides-placeholder .big-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .slides-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      font-style: italic;
+    }
+    /* If you embed a Google Slides iframe, style it: */
+    .slides-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(27,42,94,0.12);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    footer a { color: var(--teal-lt); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 0.7; }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .overview-grid, .findings-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Practicum Portfolio</div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#findings">Findings</a>
+    <a href="#recommendations">Recommendations</a>
+    <a href="#slides">Presentation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span>▸</span> Practicum Work Sample
+    </div>
+    <h1 class="hero-title">
+      Organizational Assessment:<br>
+      <em>Burnout, Strain &amp; Employee Wellbeing</em>
+    </h1>
+    <p class="hero-sub">
+      A mixed-methods consulting assessment examining burnout indicators, organizational stressors, and actionable recommendations within a university student services unit.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-chip"><span class="dot"></span> Spring 2026</div>
+      <div class="meta-chip"><span class="dot"></span> Higher Education / Student Affairs</div>
+      <div class="meta-chip"><span class="dot"></span> Mixed-Methods Research</div>
+      <div class="meta-chip"><span class="dot"></span> Applied Consulting</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-inner">
+    <p class="section-label reveal">Project Overview</p>
+    <h2 class="section-title reveal">About This Project</h2>
+    <p class="section-intro reveal">
+      This practicum project was conducted within a university accessibility and disability services office to assess employee burnout, organizational strain, morale, and workplace support needs — and to deliver concrete, actionable recommendations to leadership.
+    </p>
+
+    <div class="stats-strip reveal">
+      <div class="stat-item">
+        <div class="stat-num">16</div>
+        <div class="stat-label">Survey respondents<br>(76% response rate)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">16</div>
+        <div class="stat-label">Individual interviews<br>(89% participation)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">N=6</div>
+        <div class="stat-label">Exploratory<br>focus group</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3.86</div>
+        <div class="stat-label">Mean emotional exhaustion score (0–6 scale)</div>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card reveal">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">Purpose</div>
+        <div class="card-body">Understand the scope and drivers of burnout, identify protective factors, and provide leadership with evidence-based recommendations for organizational improvement.</div>
+      </div>
+      <div class="overview-card reveal">
+        <div class="card-icon">🔬</div>
+        <div class="card-title">Theoretical Framework</div>
+        <div class="card-body">Grounded in the Maslach Burnout Inventory (MBI-HSS), the Job Demands-Resources Model (Bakker &amp; Demerouti, 2007), and Emotional Labor Theory (Hochschild, 1983).</div>
+      </div>
+      <div class="overview-card reveal">
+        <div class="card-icon">⚙️</div>
+        <div class="card-title">Analysis Tools</div>
+        <div class="card-body">Quantitative data analyzed in SPSS v29 — including descriptive statistics, Cronbach's α reliability, bivariate correlations, and unit-level comparisons.</div>
+      </div>
+      <div class="overview-card reveal">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Deliverables</div>
+        <div class="card-body">A full consulting report with executive summary, statistical findings, qualitative themes, and prioritized recommendations — presented to the organizational leadership team.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- METHODOLOGY -->
+<section id="methodology">
+  <div class="section-inner">
+    <p class="section-label reveal">How It Was Done</p>
+    <h2 class="section-title reveal">Mixed-Methods Approach</h2>
+    <p class="section-intro reveal">
+      The assessment was designed as an applied consulting project using a sequential mixed-methods design — moving from exploratory qualitative inquiry to quantitative measurement and back to rich qualitative contextualization.
+    </p>
+
+    <div class="method-steps">
+      <div class="method-step reveal">
+        <div class="step-dot">🔍</div>
+        <div class="step-content">
+          <div class="step-title">Phase 1 — Exploratory Focus Group</div>
+          <div class="step-desc">Conducted an initial focus group (n = 6) to identify key themes, emerging concerns, and organization-specific context to inform survey instrument design.</div>
+          <span class="step-tag">Qualitative</span>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <div class="step-dot">📊</div>
+        <div class="step-content">
+          <div class="step-title">Phase 2 — Anonymous Employee Survey</div>
+          <div class="step-desc">Administered an anonymous survey (N = 16, 76% response rate) using validated burnout constructs alongside organization-specific items to measure emotional exhaustion, cynicism, personal accomplishment, workload strain, and turnover intentions.</div>
+          <span class="step-tag">Quantitative</span>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <div class="step-dot">🗣️</div>
+        <div class="step-content">
+          <div class="step-title">Phase 3 — Semi-Structured Interviews</div>
+          <div class="step-desc">Conducted individual interviews with 16 staff members (89% of full-time staff) to explore lived experiences of burnout, coping strategies, and perceived organizational supports and barriers.</div>
+          <span class="step-tag">Qualitative</span>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <div class="step-dot">📝</div>
+        <div class="step-content">
+          <div class="step-title">Phase 4 — Observational Data &amp; Analysis</div>
+          <div class="step-desc">Supplemented interview and survey data with qualitative observations collected as an embedded member of the organization. Data were synthesized into a final consulting report with prioritized recommendations.</div>
+          <span class="step-tag">Mixed Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FINDINGS -->
+<section id="findings">
+  <div class="section-inner">
+    <p class="section-label reveal">What Was Found</p>
+    <h2 class="section-title reveal">Key Findings</h2>
+    <p class="section-intro reveal">
+      Burnout was present across the department, though its severity and form varied by role. Employees in student-facing positions — particularly Disability Specialists — reported the highest levels of emotional exhaustion and cynicism.
+    </p>
+
+    <div class="findings-grid">
+      <div class="finding-card reveal">
+        <div class="finding-num">3.86</div>
+        <div class="finding-title">Mean Emotional Exhaustion</div>
+        <div class="finding-body">On a 0–6 frequency scale, with strong reliability (α = .946). Highest individual item: "I feel used up at the end of the workday" (M = 4.38).</div>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">3.78</div>
+        <div class="finding-title">Mean Cynicism Score</div>
+        <div class="finding-body">Measured via 7-item scale (α = .965). Emotional detachment and reduced patience were among the most commonly reported experiences.</div>
+      </div>
+      <div class="finding-card highlight reveal">
+        <div class="finding-num">5.69</div>
+        <div class="finding-title">Technology Burden — Highest Stressor</div>
+        <div class="finding-body">The single highest-rated item across the entire dataset: "Technology systems slow my work down" — indicating administrative tools are a primary driver of strain.</div>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">r = .60+</div>
+        <div class="finding-title">Burnout → Turnover Intent</div>
+        <div class="finding-body">Statistically significant positive correlation between burnout indicators and turnover intentions, indicating retention risk is meaningfully tied to burnout levels.</div>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">6.62</div>
+        <div class="finding-title">Colleague Support — A Protective Factor</div>
+        <div class="finding-body">Mean peer support rating of 6.62 / 6 scale. Strong colleague relationships emerged as the primary buffer against burnout across all roles and units.</div>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">5.13</div>
+        <div class="finding-title">Leadership Support — Room to Grow</div>
+        <div class="finding-body">Perceived leadership support (M = 5.13) was notably lower than peer support, indicating an opportunity for improvement in organizational communication and clarity.</div>
+      </div>
+    </div>
+
+    <div class="qualitative-box reveal">
+      <h4>Qualitative Themes from Interviews</h4>
+      <ul class="theme-list">
+        <li>Administrative and technology burden displacing meaningful student-facing work</li>
+        <li>Ambiguity in role expectations and shifting organizational priorities</li>
+        <li>Emotional labor demands tied to disability enforcement and student advocacy tensions</li>
+        <li>Strong sense of mission and student impact as a core source of resilience</li>
+        <li>Desire for more transparency, communication, and predictability from leadership</li>
+        <li>Hybrid flexibility identified as a significant contributor to employee wellbeing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section id="recommendations">
+  <div class="section-inner">
+    <p class="section-label reveal">What Was Recommended</p>
+    <h2 class="section-title reveal">Organizational Recommendations</h2>
+    <p class="section-intro reveal">
+      Five evidence-based recommendations were delivered to leadership, each grounded in both the quantitative data and qualitative themes gathered across all phases of the assessment.
+    </p>
+    <div class="rec-list">
+      <div class="rec-item reveal">
+        <div class="rec-number">01</div>
+        <div class="rec-content">
+          <div class="rec-title">Reduce Administrative &amp; Technology Burden</div>
+          <div class="rec-body">Prioritize review and streamlining of technology workflows that emerged as the highest-rated stressor across the department. Even incremental improvements to system efficiency would meaningfully reduce daily strain.</div>
+        </div>
+      </div>
+      <div class="rec-item reveal">
+        <div class="rec-number">02</div>
+        <div class="rec-content">
+          <div class="rec-title">Protect and Maintain Hybrid Flexibility</div>
+          <div class="rec-body">Hybrid work arrangements were widely cited as a major contributor to employee wellbeing and work-life balance. Any changes to remote work policy should be approached carefully given its protective role.</div>
+        </div>
+      </div>
+      <div class="rec-item reveal">
+        <div class="rec-number">03</div>
+        <div class="rec-content">
+          <div class="rec-title">Improve Leadership Communication &amp; Clarity</div>
+          <div class="rec-body">Staff expressed a need for more consistent, transparent communication from leadership — particularly around role expectations, organizational decisions, and future planning. Regular structured updates would reduce ambiguity-related stress.</div>
+        </div>
+      </div>
+      <div class="rec-item reveal">
+        <div class="rec-number">04</div>
+        <div class="rec-content">
+          <div class="rec-title">Invest in Role-Specific Burnout Prevention</div>
+          <div class="rec-body">Disability Specialists reported the highest burnout levels. Targeted support — such as reduced caseloads, dedicated supervision structures, or peer consultation — could buffer the most at-risk employees.</div>
+        </div>
+      </div>
+      <div class="rec-item reveal">
+        <div class="rec-number">05</div>
+        <div class="rec-content">
+          <div class="rec-title">Build on Existing Peer Support Culture</div>
+          <div class="rec-body">Colleague support was the strongest protective factor identified. Leadership should actively cultivate and protect the informal peer networks and team culture that employees already rely on as a buffer against burnout.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS DEMONSTRATED -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">Skills Demonstrated</p>
+    <h2 class="section-title reveal">Competencies</h2>
+    <p class="section-intro reveal">This project drew on a broad range of research, analytical, and professional skills.</p>
+    <div class="skills-grid reveal">
+      <span class="skill-tag primary">Mixed-Methods Research Design</span>
+      <span class="skill-tag primary">Quantitative Analysis (SPSS)</span>
+      <span class="skill-tag primary">Qualitative Interview Methods</span>
+      <span class="skill-tag primary">Survey Instrument Design</span>
+      <span class="skill-tag">Organizational Assessment</span>
+      <span class="skill-tag">Applied Consulting</span>
+      <span class="skill-tag">Stakeholder Presentations</span>
+      <span class="skill-tag">Cronbach's α / Reliability Analysis</span>
+      <span class="skill-tag">Bivariate Correlation</span>
+      <span class="skill-tag">Descriptive Statistics</span>
+      <span class="skill-tag">Maslach Burnout Inventory (MBI-HSS)</span>
+      <span class="skill-tag">Job Demands-Resources Model</span>
+      <span class="skill-tag">Confidentiality &amp; Research Ethics</span>
+      <span class="skill-tag">Report Writing</span>
+      <span class="skill-tag">Data Visualization</span>
+      <span class="skill-tag">Higher Education / Student Affairs</span>
+      <span class="skill-tag">Employee Wellbeing</span>
+      <span class="skill-tag">Program Evaluation</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SLIDES -->
+<section id="slides">
+  <div class="section-inner">
+    <p class="section-label reveal">Presentation</p>
+    <h2 class="section-title reveal">Leadership Slide Deck</h2>
+    <p class="section-intro reveal">
+      A summary presentation was delivered to organizational leadership highlighting key findings and recommendations. You can embed the slides below by replacing the placeholder with your Google Slides share link.
+    </p>
+
+    <!-- ══ OPTION A: Replace the div below with your iframe once you upload slides ══
+    <iframe class="slides-embed"
+      src="https://docs.google.com/presentation/d/YOUR_SLIDE_ID/embed?start=false&loop=false"
+      allowfullscreen>
+    </iframe>
+    -->
+
+    <!-- PLACEHOLDER — remove once you have your embed link -->
+    <div class="slides-placeholder reveal">
+      <div class="big-icon">📑</div>
+      <p><strong>Slides will appear here.</strong></p>
+      <p>Upload your PowerPoint to Google Slides, get the shareable embed link, and swap out the placeholder above.</p>
+      <p class="slides-note">Instructions are in the README below.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Practicum Work Sample &nbsp;·&nbsp; Spring 2026 &nbsp;·&nbsp; University Student Services Context &nbsp;·&nbsp; Organization anonymized for confidentiality
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
