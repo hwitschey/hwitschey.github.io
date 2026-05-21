@@ -1,513 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Practicum Work Sample | Organizational Assessment</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --navy:    #1B2A5E;
-      --navy2:   #263872;
-      --teal:    #0E7E74;
-      --teal-lt: #12A99B;
-      --sand:    #F5F0E8;
-      --cream:   #FDFBF7;
-      --orange:  #E07A30;
-      --text:    #1C1C2E;
-      --muted:   #5C6380;
-      --border:  #DDD8CC;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.65;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(253,251,247,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-    .nav-brand {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.05rem;
-      color: var(--navy);
-      letter-spacing: 0.01em;
-    }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--navy); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: var(--navy);
-      display: flex; align-items: center;
-      padding: 100px 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(14,126,116,0.3) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(38,56,114,0.8) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-    .hero-inner {
-      max-width: 900px; margin: 0 auto; position: relative; z-index: 2;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(14,126,116,0.2);
-      border: 1px solid rgba(14,126,116,0.4);
-      color: var(--teal-lt);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.85rem;
-      border-radius: 2rem;
-      margin-bottom: 1.8rem;
-      animation: fadeUp 0.6s ease both;
-    }
-    .hero-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--teal-lt);
-    }
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.65);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
-    .hero-meta {
-      display: flex; flex-wrap: wrap; gap: 1.5rem;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-    .meta-chip {
-      display: flex; align-items: center; gap: 0.5rem;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-    }
-    .meta-chip span.dot {
-      width: 6px; height: 6px;
-      background: var(--teal-lt);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-      color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 0.08em;
-      text-transform: uppercase;
-      animation: fadeUp 0.7s 0.6s ease both;
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; }
-    .section-inner { max-width: 900px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.6rem;
-    }
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      color: var(--navy);
-      margin-bottom: 1.2rem;
-      line-height: 1.2;
-    }
-    .section-intro {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 640px;
-      line-height: 1.75;
-      margin-bottom: 3rem;
-    }
-    hr.divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
-    /* ── OVERVIEW ── */
-    #overview { background: var(--cream); }
-    .overview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    .overview-card {
-      background: var(--sand);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.8rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .overview-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--teal), var(--teal-lt));
-    }
-    .card-icon {
-      font-size: 1.6rem; margin-bottom: 0.8rem;
-    }
-    .card-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
-    }
-    .card-body {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── STATS STRIP ── */
-    .stats-strip {
-      background: var(--navy);
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.4rem;
-      color: var(--teal-lt);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.4;
-      font-weight: 400;
-    }
-
-    /* ── METHODOLOGY ── */
-    #methodology { background: var(--sand); }
-    .method-steps {
-      display: flex; flex-direction: column; gap: 0;
-      position: relative;
-    }
-    .method-steps::before {
-      content: '';
-      position: absolute; left: 24px; top: 28px; bottom: 28px; width: 2px;
-      background: linear-gradient(to bottom, var(--teal), var(--border));
-    }
-    .method-step {
-      display: flex; gap: 1.5rem;
-      align-items: flex-start;
-      padding: 1.2rem 0;
-      position: relative;
-    }
-    .step-dot {
-      width: 50px; height: 50px; flex-shrink: 0;
-      background: var(--cream);
-      border: 2px solid var(--teal);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-      position: relative; z-index: 1;
-    }
-    .step-content {}
-    .step-title {
-      font-weight: 600;
-      color: var(--navy);
-      font-size: 1rem;
-      margin-bottom: 0.3rem;
-    }
-    .step-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .step-tag {
-      display: inline-block;
-      background: rgba(14,126,116,0.1);
-      color: var(--teal);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      border-radius: 3px;
-      margin-top: 0.4rem;
-    }
-
-    /* ── FINDINGS ── */
-    #findings { background: var(--cream); }
-    .findings-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    .finding-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
-      background: #fff;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .finding-card:hover {
-      box-shadow: 0 8px 30px rgba(27,42,94,0.08);
-      transform: translateY(-2px);
-    }
-    .finding-card.highlight {
-      background: var(--navy);
-      border-color: var(--navy);
-    }
-    .finding-card.highlight .finding-title,
-    .finding-card.highlight .finding-body { color: rgba(255,255,255,0.85); }
-    .finding-card.highlight .finding-title { color: #fff; }
-    .finding-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.8rem;
-      color: var(--teal);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .finding-card.highlight .finding-num { color: var(--teal-lt); }
-    .finding-title {
-      font-weight: 600;
-      color: var(--navy);
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-    }
-    .finding-body {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .qualitative-box {
-      background: var(--sand);
-      border-left: 4px solid var(--orange);
-      border-radius: 0 10px 10px 0;
-      padding: 1.5rem 1.8rem;
-      margin-top: 1.5rem;
-    }
-    .qualitative-box h4 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      color: var(--navy);
-      margin-bottom: 1rem;
-    }
-    .theme-list {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .theme-list li {
-      font-size: 0.9rem;
-      color: var(--muted);
-      padding-left: 1.2rem;
-      position: relative;
-    }
-    .theme-list li::before {
-      content: '→';
-      position: absolute; left: 0;
-      color: var(--orange);
-      font-size: 0.85rem;
-    }
-
-    /* ── RECOMMENDATIONS ── */
-    #recommendations { background: var(--navy); }
-    #recommendations .section-label { color: var(--teal-lt); }
-    #recommendations .section-title { color: #fff; }
-    #recommendations .section-intro { color: rgba(255,255,255,0.55); }
-    .rec-list {
-      display: flex; flex-direction: column; gap: 1rem;
-    }
-    .rec-item {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 1.5rem 1.8rem;
-      display: flex; gap: 1.4rem; align-items: flex-start;
-      transition: background 0.2s;
-    }
-    .rec-item:hover { background: rgba(255,255,255,0.09); }
-    .rec-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: var(--teal-lt);
-      opacity: 0.4;
-      line-height: 1;
-      flex-shrink: 0;
-      width: 2rem;
-    }
-    .rec-content {}
-    .rec-title {
-      font-weight: 600;
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-    }
-    .rec-body {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.65;
-    }
-
-    /* ── SKILLS ── */
-    #skills { background: var(--sand); }
-    .skills-grid {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-    }
-    .skill-tag {
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--navy);
-      font-size: 0.82rem;
-      font-weight: 500;
-      padding: 0.4rem 0.9rem;
-      border-radius: 2rem;
-      transition: all 0.2s;
-    }
-    .skill-tag:hover {
-      background: var(--navy);
-      color: #fff;
-      border-color: var(--navy);
-    }
-    .skill-tag.primary {
-      background: var(--teal);
-      color: #fff;
-      border-color: var(--teal);
-    }
-
-    /* ── SLIDES ── */
-    #slides { background: var(--cream); }
-    .slides-placeholder {
-      background: var(--sand);
-      border: 2px dashed var(--border);
-      border-radius: 16px;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .slides-placeholder p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-    .slides-placeholder .big-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .slides-note {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 1.5rem;
-      font-style: italic;
-    }
-    /* If you embed a Google Slides iframe, style it: */
-    .slides-embed {
-      width: 100%;
-      aspect-ratio: 16/9;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 12px 40px rgba(27,42,94,0.12);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.35);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-    }
-    footer a { color: var(--teal-lt); text-decoration: none; }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; }
-      50%       { opacity: 0.7; }
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1; transform: none;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 680px) {
-      .overview-grid, .findings-grid { grid-template-columns: 1fr; }
-      .stats-strip { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Hannah Witschey | Organizational Assessment Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1B2A;--deep:#1A3A5C;--blue:#2563EB;
+  --sky:#3B9ECF;--sky-lt:#D4EDFA;
+  --coral:#C84B2F;--coral-lt:#FAEAE5;
+  --gold:#9A6B1A;--teal:#0C7A6E;--teal-lt:#CCF0EC;
+  --cream:#FAF7F2;--sand:#F0EAE0;--parch:#E6DDD0;
+  --white:#FFFFFF;--text:#1A1A2E;--muted:#575B72;--border:#D5CCB8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.65;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(26,58,92,0.97);backdrop-filter:blur(14px);height:60px;display:flex;align-items:center;padding:0 2.5rem;justify-content:space-between}
+.nav-name{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:#fff}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);transition:color .2s}
+.nav-links a:hover{color:var(--sky)}
+.hero{min-height:100vh;background:var(--deep);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 2.5rem 5rem}
+.hdot{position:absolute;border-radius:50%;pointer-events:none}
+.hd1{width:650px;height:650px;background:radial-gradient(circle,rgba(59,158,207,.16) 0%,transparent 70%);top:-180px;right:-80px}
+.hd2{width:450px;height:450px;background:radial-gradient(circle,rgba(200,75,47,.1) 0%,transparent 70%);bottom:-120px;left:-60px}
+.htex{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.035) 1px,transparent 0);background-size:30px 30px;pointer-events:none}
+.hero-inner{max-width:1020px;margin:0 auto;width:100%;position:relative;z-index:2;display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(59,158,207,.12);border:1px solid rgba(59,158,207,.3);color:var(--sky);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;margin-bottom:1.5rem;animation:fadeUp .5s ease both}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,5vw,3.5rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:1.3rem;animation:fadeUp .6s .1s ease both}
+.hero h1 em{font-style:italic;color:var(--sky);font-weight:700}
+.hero-sub{font-size:.97rem;color:rgba(255,255,255,.5);font-weight:300;line-height:1.9;max-width:480px;margin-bottom:2rem;animation:fadeUp .6s .2s ease both}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.55rem;animation:fadeUp .6s .3s ease both}
+.chip{padding:.3rem .82rem;border-radius:5px;font-size:.67rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.c-sky{background:rgba(59,158,207,.12);border:1px solid rgba(59,158,207,.28);color:var(--sky)}
+.c-cr{background:rgba(200,75,47,.1);border:1px solid rgba(200,75,47,.28);color:#E07050}
+.c-gh{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.48)}
+.hstats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;animation:fadeUp .6s .4s ease both}
+.hs{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1.25rem 1.1rem}
+.hs-n{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;color:var(--sky);line-height:1;margin-bottom:.22rem}
+.hs-l{font-size:.7rem;color:rgba(255,255,255,.36);line-height:1.45}
+.hs.big{grid-column:span 2;background:rgba(59,158,207,.08);border-color:rgba(59,158,207,.2)}
+.hs.big .hs-n{font-size:.97rem;color:#fff;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.5}
+.hs.big .hs-l{color:rgba(255,255,255,.38)}
+.sc-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:fadeUp .6s .9s ease both}
+.sc-hint span{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.scl{width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent)}
+section{padding:5.5rem 2.5rem}
+.inner{max-width:1020px;margin:0 auto}
+.kicker{font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.65rem,3.5vw,2.4rem);font-weight:900;color:var(--ink);line-height:1.1;margin-bottom:.95rem}
+.slead{font-size:.94rem;color:var(--muted);max-width:640px;line-height:1.9;margin-bottom:2.8rem}
+hr.rule{border:none;border-top:1px solid var(--border)}
+#context{background:var(--white)}
+.ctg{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.ctc{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:1.75rem;position:relative;overflow:hidden}
+.ctc::before{content:'';position:absolute;top:0;left:0;width:4px;bottom:0;background:linear-gradient(to bottom,var(--teal),var(--sky))}
+.ctc-icon{font-size:1.4rem;margin-bottom:.75rem}
+.ctc-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.97rem;color:var(--ink);margin-bottom:.45rem}
+.ctc-body{font-size:.85rem;color:var(--muted);line-height:1.8}
+#deliverables{background:var(--sand)}
+.delg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem}
+.delc{background:var(--white);border:1px solid var(--border);border-radius:11px;padding:1.45rem;transition:transform .2s,box-shadow .2s}
+.delc:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(26,58,92,.08)}
+.del-icon{width:40px;height:40px;background:var(--teal-lt);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:.85rem}
+.del-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.93rem;color:var(--ink);margin-bottom:.38rem}
+.del-desc{font-size:.79rem;color:var(--muted);line-height:1.72}
+#methodology{background:var(--deep)}
+#methodology .kicker{color:var(--sky)}
+#methodology .stitle{color:#fff}
+#methodology .slead{color:rgba(255,255,255,.4)}
+.mrow{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.mcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:1.45rem}
+.mn{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:rgba(59,158,207,.18);line-height:1;margin-bottom:.55rem}
+.ml{font-size:.73rem;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.42rem}
+.md{font-size:.78rem;color:rgba(255,255,255,.37);line-height:1.65}
+.mt{display:inline-block;margin-top:.75rem;background:rgba(59,158,207,.1);border:1px solid rgba(59,158,207,.2);color:var(--sky);font-size:.61rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .55rem;border-radius:3px}
+#findings{background:var(--white)}
+.ftop{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.fst{background:var(--cream);border:1px solid var(--border);border-radius:11px;padding:1.35rem}
+.fst-n{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:900;color:var(--ink);line-height:1;margin-bottom:.25rem}
+.fst-sc{font-size:.83rem;color:var(--muted);font-weight:400}
+.fst-sub{font-size:.75rem;color:var(--muted);line-height:1.55;margin-top:.12rem}
+.fst-a{color:var(--teal);font-weight:600}
+.fst-b{height:5px;background:var(--border);border-radius:99px;margin-top:.85rem;overflow:hidden}
+.fst-f{height:100%;border-radius:99px}
+.fb-t{background:linear-gradient(90deg,var(--teal),var(--sky))}
+.fb-c{background:linear-gradient(90deg,var(--coral),#E08060)}
+.v2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.4rem}
+.vc{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:1.75rem}
+.vt{font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:1.15rem}
+.br{display:flex;align-items:center;gap:.72rem;margin-bottom:.62rem}
+.brl{font-size:.71rem;color:var(--muted);width:200px;flex-shrink:0;text-align:right;line-height:1.35}
+.brt{flex:1;height:22px;background:var(--sand);border-radius:4px;overflow:hidden}
+.brf{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:.42rem}
+.brv{font-size:.66rem;font-weight:700;color:#fff}
+.ft{background:linear-gradient(90deg,#0a6258,var(--teal))}
+.fc{background:linear-gradient(90deg,#8a2a10,var(--coral))}
+.fb2{background:linear-gradient(90deg,#0e4080,var(--blue))}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.ti{display:flex;align-items:flex-start;gap:.62rem;padding:.82rem .95rem;background:var(--white);border:1px solid var(--border);border-radius:7px}
+.tp{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--teal);flex-shrink:0;width:2.8rem;text-align:center;line-height:1.2}
+.tt{font-size:.76rem;color:var(--muted);line-height:1.55}
+.uc{display:flex;flex-direction:column;gap:1.05rem}
+.uc-row{}
+.uc-u{font-size:.72rem;font-weight:600;color:var(--ink);margin-bottom:.32rem;display:flex;align-items:center;gap:.5rem}
+.uc-badge{font-size:.58rem;background:var(--coral-lt);color:var(--coral);padding:.13rem .42rem;border-radius:3px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.uc-bars{display:flex;flex-direction:column;gap:3px}
+.uc-bar-row{display:flex;align-items:center;gap:.48rem}
+.uc-lbl{font-size:.61rem;color:var(--muted);width:1.9rem;flex-shrink:0;text-align:right}
+.uc-track{flex:1;height:18px;background:var(--sand);border-radius:3px;overflow:hidden}
+.uc-fill{height:100%;border-radius:3px;display:flex;align-items:center;justify-content:flex-end;padding-right:.38rem}
+.uc-val{font-size:.61rem;font-weight:700;color:#fff}
+.cbox{background:var(--deep);border-radius:12px;padding:1.8rem 2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:1.4rem}
+.ci{text-align:center}
+.cr{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--sky);margin-bottom:.25rem}
+.cl{font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.55}
+.toi{display:flex;align-items:center;gap:.88rem;margin-bottom:.72rem}
+.tol{font-size:.79rem;color:var(--muted);width:245px;flex-shrink:0}
+.tot{flex:1;height:17px;background:var(--sand);border-radius:3px;overflow:hidden}
+.tof{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--coral),#E08060)}
+.top{font-size:.7rem;font-weight:700;color:var(--ink);width:3.1rem;text-align:right}
+#recommendations{background:var(--sand)}
+.rlist{display:flex;flex-direction:column;gap:1.1rem}
+.ri{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.75rem 2rem;display:grid;grid-template-columns:62px 1fr;gap:1.4rem;align-items:start;transition:box-shadow .2s,transform .2s}
+.ri:hover{box-shadow:0 8px 28px rgba(26,58,92,.07);transform:translateY(-2px)}
+.rn{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;color:rgba(12,122,110,.13);line-height:1}
+.rtitle{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:.43rem}
+.rbody{font-size:.84rem;color:var(--muted);line-height:1.82}
+.rtag{display:inline-block;margin-top:.58rem;background:var(--teal-lt);color:var(--teal);font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.18rem .62rem;border-radius:3px}
+#slides{background:var(--deep)}
+#slides .kicker{color:var(--sky)}
+#slides .stitle{color:#fff}
+#slides .slead{color:rgba(255,255,255,.4)}
+.sw{border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.sw iframe{width:100%;display:block;border:none;aspect-ratio:16/9}
+#skills{background:var(--white)}
+.sg{margin-bottom:1.9rem}
+.sgl{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.72rem}
+.skw{display:flex;flex-wrap:wrap;gap:.45rem}
+.sk{padding:.28rem .82rem;border-radius:5px;font-size:.69rem;font-weight:600;letter-spacing:.03em;transition:all .15s;cursor:default}
+.sk-p{background:var(--deep);color:#fff}
+.sk-s{background:var(--cream);border:1px solid var(--border);color:var(--ink)}
+.sk-s:hover{background:var(--deep);color:#fff;border-color:var(--deep)}
+footer{background:var(--ink);color:rgba(255,255,255,.27);text-align:center;padding:2.6rem 2rem;font-size:.69rem;letter-spacing:.05em}
+footer span{color:rgba(255,255,255,.11)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+@media(max-width:800px){
+  .hero-inner,.ctg,.v2,.mrow,.delg{grid-template-columns:1fr}
+  .ftop,.cbox{grid-template-columns:1fr 1fr}
+  .ri{grid-template-columns:1fr}
+  .tg{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <div class="nav-brand">Practicum Portfolio</div>
+  <span class="nav-name">Hannah Witschey</span>
   <div class="nav-links">
-    <a href="#overview">Overview</a>
+    <a href="#context">Project</a>
+    <a href="#deliverables">Deliverables</a>
     <a href="#methodology">Methodology</a>
     <a href="#findings">Findings</a>
     <a href="#recommendations">Recommendations</a>
@@ -515,317 +172,254 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid"></div>
+  <div class="htex"></div><div class="hdot hd1"></div><div class="hdot hd2"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span>▸</span> Practicum Work Sample
+    <div>
+      <div class="hero-tag">&#9654;&nbsp; Internal Consulting &middot; OD Work Sample</div>
+      <h1>Organizational Assessment:<br><em>Employee Burnout &amp; Wellbeing</em></h1>
+      <p class="hero-sub">A mixed-methods internal consulting engagement examining burnout indicators, organizational strain, and employee support needs across a 21-person university service unit &mdash; delivering strategic recommendations and six implementation-ready tools to senior leadership.</p>
+      <div class="hero-chips">
+        <span class="chip c-sky">Mixed-Methods Research</span>
+        <span class="chip c-sky">Applied OD Consulting</span>
+        <span class="chip c-cr">SPSS &middot; Qualtrics</span>
+        <span class="chip c-gh">Spring 2026</span>
+      </div>
     </div>
-    <h1 class="hero-title">
-      Organizational Assessment:<br>
-      <em>Burnout, Strain &amp; Employee Wellbeing</em>
-    </h1>
-    <p class="hero-sub">
-      A mixed-methods consulting assessment examining burnout indicators, organizational stressors, and actionable recommendations within a university student services unit.
-    </p>
-    <div class="hero-meta">
-      <div class="meta-chip"><span class="dot"></span> Spring 2026</div>
-      <div class="meta-chip"><span class="dot"></span> Higher Education / Student Affairs</div>
-      <div class="meta-chip"><span class="dot"></span> Mixed-Methods Research</div>
-      <div class="meta-chip"><span class="dot"></span> Applied Consulting</div>
+    <div class="hstats">
+      <div class="hs"><div class="hs-n">76%</div><div class="hs-l">Survey response rate (16 of 21 eligible staff)</div></div>
+      <div class="hs"><div class="hs-n">89%</div><div class="hs-l">Interview participation (16 of 18 full-time staff)</div></div>
+      <div class="hs"><div class="hs-n">3.86</div><div class="hs-l">Mean emotional exhaustion (1&ndash;7 scale)</div></div>
+      <div class="hs"><div class="hs-n">50%</div><div class="hs-l">Staff in elevated turnover risk category</div></div>
+      <div class="hs big"><div class="hs-n">6 Deliverables &rarr; Presented to Senior Leadership</div><div class="hs-l">Full report, presentation, communication library, decision log, update template &amp; survey instrument</div></div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Scroll
-  </div>
+  <div class="sc-hint"><span>Scroll</span><div class="scl"></div></div>
 </section>
 
-<hr class="divider">
+<hr class="rule">
 
-<!-- OVERVIEW -->
-<section id="overview">
-  <div class="section-inner">
-    <p class="section-label reveal">Project Overview</p>
-    <h2 class="section-title reveal">About This Project</h2>
-    <p class="section-intro reveal">
-      This practicum project was conducted within a university accessibility and disability services office to assess employee burnout, organizational strain, morale, and workplace support needs — and to deliver concrete, actionable recommendations to leadership.
-    </p>
-
-    <div class="stats-strip reveal">
-      <div class="stat-item">
-        <div class="stat-num">16</div>
-        <div class="stat-label">Survey respondents<br>(76% response rate)</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">16</div>
-        <div class="stat-label">Individual interviews<br>(89% participation)</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">N=6</div>
-        <div class="stat-label">Exploratory<br>focus group</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">3.86</div>
-        <div class="stat-label">Mean emotional exhaustion score (0–6 scale)</div>
-      </div>
-    </div>
-
-    <div class="overview-grid">
-      <div class="overview-card reveal">
-        <div class="card-icon">🎯</div>
-        <div class="card-title">Purpose</div>
-        <div class="card-body">Understand the scope and drivers of burnout, identify protective factors, and provide leadership with evidence-based recommendations for organizational improvement.</div>
-      </div>
-      <div class="overview-card reveal">
-        <div class="card-icon">🔬</div>
-        <div class="card-title">Theoretical Framework</div>
-        <div class="card-body">Grounded in the Maslach Burnout Inventory (MBI-HSS), the Job Demands-Resources Model (Bakker &amp; Demerouti, 2007), and Emotional Labor Theory (Hochschild, 1983).</div>
-      </div>
-      <div class="overview-card reveal">
-        <div class="card-icon">⚙️</div>
-        <div class="card-title">Analysis Tools</div>
-        <div class="card-body">Quantitative data analyzed in SPSS v29 — including descriptive statistics, Cronbach's α reliability, bivariate correlations, and unit-level comparisons.</div>
-      </div>
-      <div class="overview-card reveal">
-        <div class="card-icon">📋</div>
-        <div class="card-title">Deliverables</div>
-        <div class="card-body">A full consulting report with executive summary, statistical findings, qualitative themes, and prioritized recommendations — presented to the organizational leadership team.</div>
-      </div>
+<section id="context">
+  <div class="inner">
+    <p class="kicker reveal">Project Context</p>
+    <h2 class="stitle reveal">About This Engagement</h2>
+    <p class="slead reveal">As an embedded internal consultant, I independently led a full organizational diagnostic within a high-volume university accessibility and disability services unit &mdash; a team of up to 21 staff that had seen 93% growth in student demand since 2021, while simultaneously navigating staffing shortages, an office relocation, and evolving telework policy.</p>
+    <div class="ctg">
+      <div class="ctc reveal"><div class="ctc-icon">&#127919;</div><div class="ctc-title">Consulting Objectives</div><div class="ctc-body">Assess the scope and drivers of employee burnout; identify protective organizational factors; and deliver evidence-based recommendations to leadership focused on retention, workload sustainability, communication clarity, and organizational effectiveness.</div></div>
+      <div class="ctc reveal"><div class="ctc-icon">&#127970;</div><div class="ctc-title">Organizational Context</div><div class="ctc-body">The unit served ~4,000 registered students &mdash; up from ~2,000 since 2021 (+93%). During the assessment, staff were navigating concurrent stressors: active staffing shortages, a building relocation, evolving telework expectations, and increasing service complexity.</div></div>
+      <div class="ctc reveal"><div class="ctc-icon">&#128208;</div><div class="ctc-title">Theoretical Frameworks</div><div class="ctc-body">Grounded in the Maslach Burnout Inventory&ndash;Human Services Survey (MBI-HSS), Job Demands-Resources Model (Bakker &amp; Demerouti, 2007), and Emotional Labor Theory (Hochschild, 1983). Quantitative analysis in SPSS v29.</div></div>
+      <div class="ctc reveal"><div class="ctc-icon">&#128274;</div><div class="ctc-title">Confidentiality &amp; Ethics</div><div class="ctc-body">Organization anonymized for this portfolio. All data collected anonymously with aggregate reporting throughout to protect confidentiality in a small department where unit sizes ranged from 1&ndash;3 staff. Positionality documented and managed throughout.</div></div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="rule">
 
-<!-- METHODOLOGY -->
+<section id="deliverables">
+  <div class="inner">
+    <p class="kicker reveal">What Was Produced</p>
+    <h2 class="stitle reveal">Project Deliverables</h2>
+    <p class="slead reveal">The engagement produced six deliverables &mdash; a full consulting report, an executive presentation, and four implementation-ready tools designed to be immediately actionable for leadership without external support.</p>
+    <div class="delg">
+      <div class="delc reveal"><div class="del-icon">&#128196;</div><div class="del-title">Consulting Report</div><div class="del-desc">28-page report with executive summary, full methodology, statistical output, qualitative theme analysis, and prioritized recommendations with phased implementation guidance.</div></div>
+      <div class="delc reveal"><div class="del-icon">&#128202;</div><div class="del-title">Leadership Presentation</div><div class="del-desc">Executive-facing slide deck for a 60-minute leadership briefing, translating findings into accessible insights and next steps for a non-research audience.</div></div>
+      <div class="delc reveal"><div class="del-icon">&#128172;</div><div class="del-title">Communication Library Prototype</div><div class="del-desc">A structured internal site housing reviewed language templates for difficult student interactions, with a 5-phase governance and implementation plan targeting the top burnout driver.</div></div>
+      <div class="delc reveal"><div class="del-icon">&#128203;</div><div class="del-title">Decision Change Log</div><div class="del-desc">Spreadsheet tool for tracking major procedural updates, implementation dates, and decision rationale &mdash; directly addressing high-frequency themes of inconsistency and lack of transparency.</div></div>
+      <div class="delc reveal"><div class="del-icon">&#128221;</div><div class="del-title">Leadership Update Template</div><div class="del-desc">Reusable structured template for regular leadership communications, designed to improve transparency, priority alignment, and consistency.</div></div>
+      <div class="delc reveal"><div class="del-icon">&#128200;</div><div class="del-title">Survey Instrument</div><div class="del-desc">Custom Qualtrics survey built from validated burnout constructs and org-specific items, designed as a reusable template for annual reassessment and longitudinal tracking.</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <section id="methodology">
-  <div class="section-inner">
-    <p class="section-label reveal">How It Was Done</p>
-    <h2 class="section-title reveal">Mixed-Methods Approach</h2>
-    <p class="section-intro reveal">
-      The assessment was designed as an applied consulting project using a sequential mixed-methods design — moving from exploratory qualitative inquiry to quantitative measurement and back to rich qualitative contextualization.
-    </p>
-
-    <div class="method-steps">
-      <div class="method-step reveal">
-        <div class="step-dot">🔍</div>
-        <div class="step-content">
-          <div class="step-title">Phase 1 — Exploratory Focus Group</div>
-          <div class="step-desc">Conducted an initial focus group (n = 6) to identify key themes, emerging concerns, and organization-specific context to inform survey instrument design.</div>
-          <span class="step-tag">Qualitative</span>
-        </div>
-      </div>
-      <div class="method-step reveal">
-        <div class="step-dot">📊</div>
-        <div class="step-content">
-          <div class="step-title">Phase 2 — Anonymous Employee Survey</div>
-          <div class="step-desc">Administered an anonymous survey (N = 16, 76% response rate) using validated burnout constructs alongside organization-specific items to measure emotional exhaustion, cynicism, personal accomplishment, workload strain, and turnover intentions.</div>
-          <span class="step-tag">Quantitative</span>
-        </div>
-      </div>
-      <div class="method-step reveal">
-        <div class="step-dot">🗣️</div>
-        <div class="step-content">
-          <div class="step-title">Phase 3 — Semi-Structured Interviews</div>
-          <div class="step-desc">Conducted individual interviews with 16 staff members (89% of full-time staff) to explore lived experiences of burnout, coping strategies, and perceived organizational supports and barriers.</div>
-          <span class="step-tag">Qualitative</span>
-        </div>
-      </div>
-      <div class="method-step reveal">
-        <div class="step-dot">📝</div>
-        <div class="step-content">
-          <div class="step-title">Phase 4 — Observational Data &amp; Analysis</div>
-          <div class="step-desc">Supplemented interview and survey data with qualitative observations collected as an embedded member of the organization. Data were synthesized into a final consulting report with prioritized recommendations.</div>
-          <span class="step-tag">Mixed Analysis</span>
-        </div>
-      </div>
+  <div class="inner">
+    <p class="kicker reveal">How It Was Done</p>
+    <h2 class="stitle reveal">Mixed-Methods Approach</h2>
+    <p class="slead reveal">A sequential mixed-methods design &mdash; from exploratory qualitative inquiry through quantitative measurement, integrated via thematic coding and SPSS-based statistical analysis.</p>
+    <div class="mrow">
+      <div class="mcard reveal"><div class="mn">01</div><div class="ml">Focus Group</div><div class="md">Exploratory session with 6 Disability Specialists to surface key concerns and inform instrument design. All 6 confirmed experiencing burnout.</div><span class="mt">Qualitative</span></div>
+      <div class="mcard reveal"><div class="mn">02</div><div class="ml">Survey (N=16)</div><div class="md">Anonymous Qualtrics survey distributed to all 21 eligible staff (76% response). MBI-HSS constructs + org-specific items. Analyzed in SPSS v29: descriptives, reliability (&alpha;), correlations, unit comparisons.</div><span class="mt">Quantitative</span></div>
+      <div class="mcard reveal"><div class="mn">03</div><div class="ml">Interviews (N=16)</div><div class="md">Semi-structured interviews with 16 of 18 full-time staff (89%). Custom codebook developed and applied. Themes compared to survey data for cross-method convergence.</div><span class="mt">Qualitative</span></div>
+      <div class="mcard reveal"><div class="mn">04</div><div class="ml">Synthesis</div><div class="md">Mixed-methods integration of SPSS output, coded interview themes, observational data, and archival review into a final report with feasibility-weighted recommendations.</div><span class="mt">Integration</span></div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="rule">
 
-<!-- FINDINGS -->
 <section id="findings">
-  <div class="section-inner">
-    <p class="section-label reveal">What Was Found</p>
-    <h2 class="section-title reveal">Key Findings</h2>
-    <p class="section-intro reveal">
-      Burnout was present across the department, though its severity and form varied by role. Employees in student-facing positions — particularly Disability Specialists — reported the highest levels of emotional exhaustion and cynicism.
-    </p>
+  <div class="inner">
+    <p class="kicker reveal">Data &amp; Findings</p>
+    <h2 class="stitle reveal">Key Findings</h2>
+    <p class="slead reveal">Burnout was present across the department but varied significantly by role. Disability Specialists reported the highest levels. Near-ceiling peer support was the strongest protective factor identified across both qualitative and quantitative data.</p>
 
-    <div class="findings-grid">
-      <div class="finding-card reveal">
-        <div class="finding-num">3.86</div>
-        <div class="finding-title">Mean Emotional Exhaustion</div>
-        <div class="finding-body">On a 0–6 frequency scale, with strong reliability (α = .946). Highest individual item: "I feel used up at the end of the workday" (M = 4.38).</div>
+    <div class="ftop reveal">
+      <div class="fst">
+        <div class="fst-n">3.86 <span class="fst-sc">/ 7</span></div>
+        <div class="fst-sub">Emotional Exhaustion (&alpha;=.946)<br><span class="fst-a">Disability Specialists: M=4.84</span></div>
+        <div class="fst-b"><div class="fst-f fb-t" style="width:55%"></div></div>
       </div>
-      <div class="finding-card reveal">
-        <div class="finding-num">3.78</div>
-        <div class="finding-title">Mean Cynicism Score</div>
-        <div class="finding-body">Measured via 7-item scale (α = .965). Emotional detachment and reduced patience were among the most commonly reported experiences.</div>
+      <div class="fst">
+        <div class="fst-n">3.78 <span class="fst-sc">/ 7</span></div>
+        <div class="fst-sub">Cynicism (&alpha;=.965)<br><span class="fst-a">Disability Specialists: M=4.82</span></div>
+        <div class="fst-b"><div class="fst-f fb-t" style="width:54%"></div></div>
       </div>
-      <div class="finding-card highlight reveal">
-        <div class="finding-num">5.69</div>
-        <div class="finding-title">Technology Burden — Highest Stressor</div>
-        <div class="finding-body">The single highest-rated item across the entire dataset: "Technology systems slow my work down" — indicating administrative tools are a primary driver of strain.</div>
-      </div>
-      <div class="finding-card reveal">
-        <div class="finding-num">r = .60+</div>
-        <div class="finding-title">Burnout → Turnover Intent</div>
-        <div class="finding-body">Statistically significant positive correlation between burnout indicators and turnover intentions, indicating retention risk is meaningfully tied to burnout levels.</div>
-      </div>
-      <div class="finding-card reveal">
-        <div class="finding-num">6.62</div>
-        <div class="finding-title">Colleague Support — A Protective Factor</div>
-        <div class="finding-body">Mean peer support rating of 6.62 / 6 scale. Strong colleague relationships emerged as the primary buffer against burnout across all roles and units.</div>
-      </div>
-      <div class="finding-card reveal">
-        <div class="finding-num">5.13</div>
-        <div class="finding-title">Leadership Support — Room to Grow</div>
-        <div class="finding-body">Perceived leadership support (M = 5.13) was notably lower than peer support, indicating an opportunity for improvement in organizational communication and clarity.</div>
+      <div class="fst">
+        <div class="fst-n">2.94 <span class="fst-sc">/ 7</span></div>
+        <div class="fst-sub">Reduced Personal Accomplishment (&alpha;=.953)<br><span style="color:var(--teal);font-weight:600">Relative bright spot &mdash; lower score = less reduction in accomplishment</span><br><span style="color:var(--muted);font-size:.72rem">Most employees retained meaningful sense of efficacy &amp; pride despite elevated exhaustion</span></div>
+        <div class="fst-b"><div class="fst-f fb-t" style="width:42%"></div></div>
       </div>
     </div>
 
-    <div class="qualitative-box reveal">
-      <h4>Qualitative Themes from Interviews</h4>
-      <ul class="theme-list">
-        <li>Administrative and technology burden displacing meaningful student-facing work</li>
-        <li>Ambiguity in role expectations and shifting organizational priorities</li>
-        <li>Emotional labor demands tied to disability enforcement and student advocacy tensions</li>
-        <li>Strong sense of mission and student impact as a core source of resilience</li>
-        <li>Desire for more transparency, communication, and predictability from leadership</li>
-        <li>Hybrid flexibility identified as a significant contributor to employee wellbeing</li>
-      </ul>
+    <div class="v2">
+      <!-- WL items - verified from SPSS output, all on 1-7 scale -->
+      <div class="vc reveal">
+        <div class="vt">Top Workload &amp; Admin Strain Items &mdash; Survey Means (1&ndash;7 scale)</div>
+        <div class="br"><div class="brl">Technology systems slow my work down</div><div class="brt"><div class="brf ft" style="width:81%"><span class="brv">5.69</span></div></div></div>
+        <div class="br"><div class="brl">Workload does not feel manageable*</div><div class="brt"><div class="brf ft" style="width:84%"><span class="brv">5.75</span></div></div></div>
+        <div class="br"><div class="brl">Not enough time to complete responsibilities*</div><div class="brt"><div class="brf ft" style="width:81%"><span class="brv">5.69</span></div></div></div>
+        <div class="br"><div class="brl">Frequent frustrations with tools/systems</div><div class="brt"><div class="brf ft" style="width:76%"><span class="brv">5.31</span></div></div></div>
+        <div class="br"><div class="brl">Too many steps to accomplish routine tasks</div><div class="brt"><div class="brf ft" style="width:73%"><span class="brv">5.13</span></div></div></div>
+        <div class="br"><div class="brl">More time on processes than helping students</div><div class="brt"><div class="brf ft" style="width:71%"><span class="brv">5.00</span></div></div></div>
+        <div style="font-size:.69rem;color:var(--muted);margin-top:.85rem;line-height:1.5;font-style:italic">* Items marked with asterisk are reverse-scored; values reflect burnout-direction scoring.</div>
+      </div>
+
+      <div class="vc reveal">
+        <div class="vt">Support Gap &mdash; Colleague vs. Leadership (1&ndash;7 scale)</div>
+        <div class="br" style="margin-bottom:1.1rem"><div class="brl">Colleague support</div><div class="brt"><div class="brf ft" style="width:94%"><span class="brv">6.60</span></div></div></div>
+        <div class="br" style="margin-bottom:1.3rem"><div class="brl">Leadership support</div><div class="brt"><div class="brf fc" style="width:72%"><span class="brv">5.07</span></div></div></div>
+        <div style="background:var(--white);border-radius:7px;padding:.95rem 1.1rem;border-left:3px solid var(--teal)">
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:.28rem">Key insight</div>
+          <div style="font-size:.78rem;color:var(--muted);line-height:1.72">Peer support was the #1 protective factor &mdash; coded in 13 of 16 interviews (87%). The 1.53-point gap between colleague and leadership support indicates peer networks are carrying a disproportionate organizational buffering role.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="v2">
+      <div class="vc reveal" style="grid-column:span 2">
+        <div class="vt">Burnout Indicators by Unit &mdash; All Three Dimensions (1&ndash;7 scale, Never&ndash;Every day)</div>
+        <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.2rem;font-size:.7rem;color:var(--muted);flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:.4rem"><span style="width:12px;height:12px;border-radius:2px;background:#E5830A;display:inline-block"></span> Emotional Exhaustion</span>
+          <span style="display:flex;align-items:center;gap:.4rem"><span style="width:12px;height:12px;border-radius:2px;background:var(--deep);display:inline-block"></span> Cynicism</span>
+          <span style="display:flex;align-items:center;gap:.4rem"><span style="width:12px;height:12px;border-radius:2px;background:var(--teal);display:inline-block"></span> Reduced Personal Accomplishment</span>
+        </div>
+        <!-- Disability Specialists -->
+        <div style="margin-bottom:1.1rem">
+          <div style="font-size:.74rem;font-weight:600;color:var(--ink);margin-bottom:.45rem;display:flex;align-items:center;gap:.5rem">Disability Specialists <span style="font-size:.6rem;background:var(--coral-lt);color:var(--coral);padding:.12rem .42rem;border-radius:3px;font-weight:700;text-transform:uppercase;letter-spacing:.04em">Highest across all dimensions</span></div>
+          <div class="uc-bars">
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">EE</div><div class="uc-track"><div class="uc-fill" style="width:69%;background:#E5830A"><span class="uc-val">4.84</span></div></div></div>
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">CY</div><div class="uc-track"><div class="uc-fill" style="width:69%;background:var(--deep)"><span class="uc-val">4.82</span></div></div></div>
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">Red. PA</div><div class="uc-track"><div class="uc-fill" style="width:47%;background:var(--teal)"><span class="uc-val">3.30</span></div></div></div>
+          </div>
+        </div>
+        <!-- Testing Unit -->
+        <div style="margin-bottom:1.1rem">
+          <div style="font-size:.74rem;font-weight:600;color:var(--ink);margin-bottom:.45rem">Testing Unit</div>
+          <div class="uc-bars">
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">EE</div><div class="uc-track"><div class="uc-fill" style="width:40%;background:rgba(229,131,10,.5)"><span class="uc-val">2.80</span></div></div></div>
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">CY</div><div class="uc-track"><div class="uc-fill" style="width:37%;background:rgba(26,58,92,.45)"><span class="uc-val">2.62</span></div></div></div>
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">Red. PA</div><div class="uc-track"><div class="uc-fill" style="width:28%;background:rgba(12,122,110,.45)"><span class="uc-val">1.98</span></div></div></div>
+          </div>
+        </div>
+        <!-- Other Units -->
+        <div>
+          <div style="font-size:.74rem;font-weight:600;color:var(--ink);margin-bottom:.45rem">Other Units (combined)</div>
+          <div class="uc-bars">
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">EE</div><div class="uc-track"><div class="uc-fill" style="width:40%;background:rgba(229,131,10,.35)"><span class="uc-val">2.80</span></div></div></div>
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">CY</div><div class="uc-track"><div class="uc-fill" style="width:30%;background:rgba(26,58,92,.3)"><span class="uc-val">2.07</span></div></div></div>
+            <div class="uc-bar-row"><div class="uc-lbl" style="width:3.2rem;font-size:.65rem">Red. PA</div><div class="uc-track"><div class="uc-fill" style="width:41%;background:rgba(12,122,110,.35)"><span class="uc-val">2.88</span></div></div></div>
+          </div>
+        </div>
+        <div style="font-size:.68rem;color:var(--muted);margin-top:1rem;line-height:1.55;font-style:italic">Reduced Personal Accomplishment (Red. PA) is a reverse-scored scale &mdash; a lower score indicates employees retained more sense of accomplishment. Disability Specialists scored highest on all three dimensions; personal accomplishment was a relative bright spot across all units compared to exhaustion and cynicism. Smaller units (1&ndash;3 staff each) combined to protect confidentiality.</div>
+      </div>
+
+      <div class="vc reveal">
+        <div class="vt">Qualitative Themes &mdash; Interview Coding Frequency (N=16 interviews)</div>
+        <div class="tg">
+          <div class="ti"><div class="tp">93%</div><div class="tt">High volume &amp; surge demand (14/16)</div></div>
+          <div class="ti"><div class="tp">87%</div><div class="tt">Cynicism / depersonalization (13/16)</div></div>
+          <div class="ti"><div class="tp">87%</div><div class="tt">Peer support as coping resource (13/16)</div></div>
+          <div class="ti"><div class="tp">80%</div><div class="tt">Repetitive &amp; admin tasks (12/16)</div></div>
+          <div class="ti"><div class="tp">80%</div><div class="tt">Mission meaning &amp; student impact (12/16)</div></div>
+          <div class="ti"><div class="tp">73%</div><div class="tt">Emotional exhaustion (11/16)</div></div>
+          <div class="ti"><div class="tp">73%</div><div class="tt">Difficult &amp; entitled interactions (11/16)</div></div>
+          <div class="ti"><div class="tp">67%</div><div class="tt">Lack of transparency (10/16)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vc reveal" style="margin-bottom:1.4rem">
+      <div class="vt">Reasons Considered Leaving &mdash; % of Survey Respondents</div>
+      <div class="toi"><div class="tol">Leadership &amp; organizational decisions</div><div class="tot"><div class="tof" style="width:68.8%"></div></div><div class="top">68.8%</div></div>
+      <div class="toi"><div class="tol">Compensation</div><div class="tot"><div class="tof" style="width:56.3%"></div></div><div class="top">56.3%</div></div>
+      <div class="toi"><div class="tol">Lack of growth opportunities</div><div class="tot"><div class="tof" style="width:43.8%"></div></div><div class="top">43.8%</div></div>
+      <div class="toi"><div class="tol">Emotional demands of the work</div><div class="tot"><div class="tof" style="width:37.5%"></div></div><div class="top">37.5%</div></div>
+      <div class="toi"><div class="tol">Workload</div><div class="tot"><div class="tof" style="width:31.3%"></div></div><div class="top">31.3%</div></div>
+      <div style="font-size:.71rem;color:var(--muted);margin-top:.82rem;font-style:italic">50% of all respondents in elevated turnover risk category &mdash; 67% among Disability Specialists specifically.</div>
+    </div>
+
+    <div class="cbox reveal">
+      <div class="ci"><div class="cr">r&nbsp;=&nbsp;.888</div><div class="cl">Organizational strain &harr; Cynicism<br><em style="opacity:.5">p &lt; .001 &mdash; strongest in dataset</em></div></div>
+      <div class="ci"><div class="cr">r&nbsp;=&nbsp;.722</div><div class="cl">Cynicism &harr; Turnover intent<br><em style="opacity:.5">p = .002</em></div></div>
+      <div class="ci"><div class="cr">r&nbsp;=&nbsp;.697</div><div class="cl">Emotional exhaustion &harr; Turnover intent<br><em style="opacity:.5">p = .003</em></div></div>
     </div>
   </div>
 </section>
 
-<!-- RECOMMENDATIONS -->
+<hr class="rule">
+
 <section id="recommendations">
-  <div class="section-inner">
-    <p class="section-label reveal">What Was Recommended</p>
-    <h2 class="section-title reveal">Organizational Recommendations</h2>
-    <p class="section-intro reveal">
-      Five evidence-based recommendations were delivered to leadership, each grounded in both the quantitative data and qualitative themes gathered across all phases of the assessment.
-    </p>
-    <div class="rec-list">
-      <div class="rec-item reveal">
-        <div class="rec-number">01</div>
-        <div class="rec-content">
-          <div class="rec-title">Reduce Administrative &amp; Technology Burden</div>
-          <div class="rec-body">Prioritize review and streamlining of technology workflows that emerged as the highest-rated stressor across the department. Even incremental improvements to system efficiency would meaningfully reduce daily strain.</div>
-        </div>
-      </div>
-      <div class="rec-item reveal">
-        <div class="rec-number">02</div>
-        <div class="rec-content">
-          <div class="rec-title">Protect and Maintain Hybrid Flexibility</div>
-          <div class="rec-body">Hybrid work arrangements were widely cited as a major contributor to employee wellbeing and work-life balance. Any changes to remote work policy should be approached carefully given its protective role.</div>
-        </div>
-      </div>
-      <div class="rec-item reveal">
-        <div class="rec-number">03</div>
-        <div class="rec-content">
-          <div class="rec-title">Improve Leadership Communication &amp; Clarity</div>
-          <div class="rec-body">Staff expressed a need for more consistent, transparent communication from leadership — particularly around role expectations, organizational decisions, and future planning. Regular structured updates would reduce ambiguity-related stress.</div>
-        </div>
-      </div>
-      <div class="rec-item reveal">
-        <div class="rec-number">04</div>
-        <div class="rec-content">
-          <div class="rec-title">Invest in Role-Specific Burnout Prevention</div>
-          <div class="rec-body">Disability Specialists reported the highest burnout levels. Targeted support — such as reduced caseloads, dedicated supervision structures, or peer consultation — could buffer the most at-risk employees.</div>
-        </div>
-      </div>
-      <div class="rec-item reveal">
-        <div class="rec-number">05</div>
-        <div class="rec-content">
-          <div class="rec-title">Build on Existing Peer Support Culture</div>
-          <div class="rec-body">Colleague support was the strongest protective factor identified. Leadership should actively cultivate and protect the informal peer networks and team culture that employees already rely on as a buffer against burnout.</div>
-        </div>
-      </div>
+  <div class="inner">
+    <p class="kicker reveal">What Was Recommended</p>
+    <h2 class="stitle reveal">Strategic Recommendations</h2>
+    <p class="slead reveal">Five evidence-based recommendations prioritized by data frequency and organizational feasibility. The three priority recommendations each included phased implementation plans and ready-to-use tools delivered alongside the report.</p>
+    <div class="rlist">
+      <div class="ri reveal"><div class="rn">01</div><div><div class="rtitle">Reduce Cognitive &amp; Administrative Burden Through Shared Resources</div><div class="rbody">Administrative burden was the most consistently cited burnout driver. Primary intervention: a Communication Library &mdash; a governance-managed internal site with leadership-reviewed language templates for difficult student interactions. Delivered with a 5-phase implementation plan (structure design, content collection, peer review, leadership approval, ongoing maintenance). Directly targets the top-rated stressors: technology burden, time pressure, and repetitive emotional labor.</div><span class="rtag">Priority 1 &middot; 5-Phase Implementation Plan Delivered</span></div></div>
+      <div class="ri reveal"><div class="rn">02</div><div><div class="rtitle">Maintain Hybrid Flexibility During Organizational Stabilization</div><div class="rbody">Hybrid work was the most consistently endorsed protective factor &mdash; functioning as an organizational resource reducing cognitive fragmentation and supporting recovery, not merely a preference. With 50% of staff in elevated turnover risk during active organizational transitions, recommended deferring any telework policy changes until staffing, facilities, and operations stabilize &mdash; and exploring feasible flexibility options even for historically in-person units.</div><span class="rtag">Priority 2 &middot; Retention Risk Implications</span></div></div>
+      <div class="ri reveal"><div class="rn">03</div><div><div class="rtitle">Improve Organizational Clarity, Communication &amp; Priority Alignment</div><div class="rbody">Inconsistent decision-making (73% of interviews) and lack of transparency (67%) were high-frequency themes. Delivered three tools: a Decision Change Log for tracking procedural updates and rationale, a Leadership Update Template for structured regular communications, and a centralized procedures repository recommendation. All low-cost, no-budget interventions reducing ambiguity-driven burnout.</div><span class="rtag">Priority 3 &middot; Three Tools Delivered</span></div></div>
+      <div class="ri reveal"><div class="rn">04</div><div><div class="rtitle">Invest in Role-Specific Support for High-Risk Positions</div><div class="rbody">Disability Specialists showed substantially higher burnout than other units (EE: 4.64 vs. 2.80&ndash;2.90 elsewhere), with 67% in elevated turnover risk. Recommended targeted supports: structured peer consultation (&ldquo;Collaboration Hours&rdquo;), clearer role scope boundaries, and supervisory structures designed to address decision fatigue from high-volume, ambiguous gatekeeping responsibilities.</div><span class="rtag">Additional Recommendation</span></div></div>
+      <div class="ri reveal"><div class="rn">05</div><div><div class="rtitle">Protect and Build On the Existing Peer Support Culture</div><div class="rbody">Colleague support was the highest-rated item in the entire dataset (M=6.60/7) and the most frequently coded protective factor (87% of interviews). The 1.53-point gap between colleague (6.60) and leadership support (5.07) indicates peer networks are buffering what formal support structures are not providing. Leadership should intentionally protect these informal networks and avoid inadvertently disrupting them through policy or structural changes.</div><span class="rtag">Additional Recommendation</span></div></div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="rule">
 
-<!-- SKILLS DEMONSTRATED -->
-<section id="skills">
-  <div class="section-inner">
-    <p class="section-label reveal">Skills Demonstrated</p>
-    <h2 class="section-title reveal">Competencies</h2>
-    <p class="section-intro reveal">This project drew on a broad range of research, analytical, and professional skills.</p>
-    <div class="skills-grid reveal">
-      <span class="skill-tag primary">Mixed-Methods Research Design</span>
-      <span class="skill-tag primary">Quantitative Analysis (SPSS)</span>
-      <span class="skill-tag primary">Qualitative Interview Methods</span>
-      <span class="skill-tag primary">Survey Instrument Design</span>
-      <span class="skill-tag">Organizational Assessment</span>
-      <span class="skill-tag">Applied Consulting</span>
-      <span class="skill-tag">Stakeholder Presentations</span>
-      <span class="skill-tag">Cronbach's α / Reliability Analysis</span>
-      <span class="skill-tag">Bivariate Correlation</span>
-      <span class="skill-tag">Descriptive Statistics</span>
-      <span class="skill-tag">Maslach Burnout Inventory (MBI-HSS)</span>
-      <span class="skill-tag">Job Demands-Resources Model</span>
-      <span class="skill-tag">Confidentiality &amp; Research Ethics</span>
-      <span class="skill-tag">Report Writing</span>
-      <span class="skill-tag">Data Visualization</span>
-      <span class="skill-tag">Higher Education / Student Affairs</span>
-      <span class="skill-tag">Employee Wellbeing</span>
-      <span class="skill-tag">Program Evaluation</span>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- SLIDES -->
 <section id="slides">
-  <div class="section-inner">
-    <p class="section-label reveal">Presentation</p>
-    <h2 class="section-title reveal">Leadership Slide Deck</h2>
-    <p class="section-intro reveal">
-      A summary presentation was delivered to organizational leadership highlighting key findings and recommendations. You can embed the slides below by replacing the placeholder with your Google Slides share link.
-    </p>
-
-    <!-- ══ OPTION A: Replace the div below with your iframe once you upload slides ══
-    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTf-mZ3VA0KvhzRni-5wsyg4WydUCvL39hLhbhHDhYgSHXhO_tNBKm6GN6fWTLE8w/pubembed?start=true&loop=true&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-    -->
-
-    <!-- PLACEHOLDER — remove once you have your embed link -->
-    <div class="slides-placeholder reveal">
-      <div class="big-icon">📑</div>
-      <p><strong>Slides will appear here.</strong></p>
-      <p>Upload your PowerPoint to Google Slides, get the shareable embed link, and swap out the placeholder above.</p>
-      <p class="slides-note">Instructions are in the README below.</p>
+  <div class="inner">
+    <p class="kicker reveal">Presentation</p>
+    <h2 class="stitle reveal">Leadership Briefing Deck</h2>
+    <p class="slead reveal">Delivered in a 60-minute briefing to organizational leadership. The deck translates research findings into accessible insights and actionable next steps, designed for a non-research executive audience.</p>
+    <div class="sw reveal">
+      <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRQG0ZhOsQQOGFF5AoqMogT39F6HMh90HknmNm6Ghl137jcBKBs_PPH4JdHKrpnOA/pubembed?start=true&loop=true&delayms=5000" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     </div>
-
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  Practicum Work Sample &nbsp;·&nbsp; Spring 2026 &nbsp;·&nbsp; University Student Services Context &nbsp;·&nbsp; Organization anonymized for confidentiality
-</footer>
+<hr class="rule">
+
+<section id="skills">
+  <div class="inner">
+    <p class="kicker reveal">Competencies Demonstrated</p>
+    <h2 class="stitle reveal">Skills &amp; Expertise</h2>
+    <p class="slead reveal">Applied competencies directly relevant to OD, internal consulting, change management, and people operations roles.</p>
+    <div class="sg reveal"><div class="sgl">Research &amp; Analysis</div><div class="skw"><span class="sk sk-p">Mixed-Methods Research Design</span><span class="sk sk-p">Quantitative Analysis (SPSS v29)</span><span class="sk sk-p">Qualitative Interviewing &amp; Coding</span><span class="sk sk-p">Survey Design (Qualtrics)</span><span class="sk sk-s">Cronbach's &alpha; / Reliability Analysis</span><span class="sk sk-s">Bivariate Correlation</span><span class="sk sk-s">Descriptive Statistics</span><span class="sk sk-s">Focus Group Facilitation</span></div></div>
+    <div class="sg reveal"><div class="sgl">OD &amp; Consulting</div><div class="skw"><span class="sk sk-p">Organizational Diagnostics</span><span class="sk sk-p">Internal Consulting</span><span class="sk sk-p">Strategic Recommendations</span><span class="sk sk-p">Stakeholder Presentations</span><span class="sk sk-s">Change Implementation Planning</span><span class="sk sk-s">Program Evaluation</span><span class="sk sk-s">Process Improvement</span><span class="sk sk-s">Employee Experience</span><span class="sk sk-s">Workforce Wellbeing</span></div></div>
+    <div class="sg reveal"><div class="sgl">Deliverable Development</div><div class="skw"><span class="sk sk-p">Executive Report Writing</span><span class="sk sk-p">Phased Implementation Planning</span><span class="sk sk-s">Tool &amp; Template Design</span><span class="sk sk-s">Knowledge Management Systems</span><span class="sk sk-s">Communication Strategy</span><span class="sk sk-s">Data Visualization</span></div></div>
+    <div class="sg reveal"><div class="sgl">Frameworks Applied</div><div class="skw"><span class="sk sk-s">Maslach Burnout Inventory (MBI-HSS)</span><span class="sk sk-s">Job Demands-Resources Model</span><span class="sk sk-s">Emotional Labor Theory</span><span class="sk sk-s">Psychological Safety (Edmondson, 1999)</span><span class="sk sk-s">Helping Profession Burnout Literature</span></div></div>
+  </div>
+</section>
+
+<footer>Hannah Witschey &nbsp;<span>&middot;</span>&nbsp; Organizational Development &amp; Internal Consulting &nbsp;<span>&middot;</span>&nbsp; Washington, DC Metro Area &nbsp;<span>&middot;</span>&nbsp; Spring 2026 &nbsp;<span>&middot;</span>&nbsp; Organization anonymized for confidentiality</footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(r => observer.observe(r));
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*55);io.unobserve(e.target)}});
+},{threshold:.07});
+reveals.forEach(r=>io.observe(r));
 </script>
-
 </body>
 </html>
