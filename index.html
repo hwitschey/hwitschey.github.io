@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Hannah Witschey | Organizational Assessment Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -29,8 +29,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(29,11,52,0.9
 .htex{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.04) 1px,transparent 0);background-size:28px 28px;pointer-events:none}
 .hero-inner{max-width:1020px;margin:0 auto;width:100%;position:relative;z-index:2;display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:center}
 .hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,97,10,.15);border:1px solid rgba(232,97,10,.4);color:#FF8C3A;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;margin-bottom:1.5rem;animation:fadeUp .5s ease both}
-.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(1.8rem,4.2vw,3rem);font-weight:400;color:#fff;line-height:1.08;margin-bottom:1.3rem;animation:fadeUp .6s .1s ease both}
-.hero h1 em{font-style:normal;color:#FF8C3A;font-weight:400}
+.hero h1{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.3rem;animation:fadeUp .6s .1s ease both}
+.h1-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#FF8C3A}
+.h1-main{font-family:'Anton',sans-serif;font-size:clamp(2.4rem,5.5vw,4rem);font-weight:400;color:#fff;line-height:.97;letter-spacing:.01em}
 .hero-sub{font-size:.97rem;color:rgba(255,255,255,.52);font-weight:300;line-height:1.9;max-width:480px;margin-bottom:2rem;animation:fadeUp .6s .2s ease both}
 .hero-chips{display:flex;flex-wrap:wrap;gap:.55rem;animation:fadeUp .6s .3s ease both}
 .chip{padding:.3rem .82rem;border-radius:5px;font-size:.67rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
@@ -176,7 +177,7 @@ footer span{color:rgba(255,255,255,.11)}
   <div class="hero-inner">
     <div>
       <div class="hero-tag">&#9654;&nbsp; Internal Consulting &middot; OD Work Sample</div>
-      <h1>Organizational Assessment:<br><em>Employee Burnout &amp; Wellbeing</em></h1>
+      <h1><span class="h1-label">Organizational Assessment</span><span class="h1-main">Employee Burnout<br>&amp; Wellbeing</span></h1>
       <p class="hero-sub">A mixed-methods internal consulting engagement examining burnout indicators, organizational strain, and employee support needs across a 21-person university service unit &mdash; delivering strategic recommendations and six implementation-ready tools to senior leadership.</p>
       <div class="hero-chips">
         <span class="chip c-sky">Mixed-Methods Research</span>
