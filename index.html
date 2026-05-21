@@ -45,9 +45,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(29,11,52,0.9
 .hs.big{grid-column:span 2;background:rgba(232,97,10,.12);border-color:rgba(232,97,10,.3)}
 .hs.big .hs-n{font-size:.97rem;color:#fff;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.5}
 .hs.big .hs-l{color:rgba(255,255,255,.4)}
-.sc-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:fadeUp .6s .9s ease both}
-.sc-hint span{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18)}
-.scl{width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,.2),transparent)}
+.sc-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;animation:fadeUp .6s .9s ease both}
+.sc-arrow{width:22px;height:22px;border-right:2.5px solid rgba(255,255,255,.4);border-bottom:2.5px solid rgba(255,255,255,.4);transform:rotate(45deg);animation:arrowBounce 1.4s ease-in-out infinite}
+@keyframes arrowBounce{0%,100%{opacity:.4;transform:rotate(45deg) translate(0,0)}50%{opacity:.9;transform:rotate(45deg) translate(3px,3px)}}
 section{padding:5.5rem 2.5rem}
 .inner{max-width:1020px;margin:0 auto}
 .kicker{font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
@@ -194,7 +194,7 @@ footer span{color:rgba(255,255,255,.11)}
       <div class="hs big"><div class="hs-n">6 Deliverables &rarr; Presented to Senior Leadership</div><div class="hs-l">Full report, presentation, communication library, decision log, update template &amp; survey instrument</div></div>
     </div>
   </div>
-  <div class="sc-hint"><span>Scroll</span><div class="scl"></div></div>
+  <div class="sc-hint"><div class="sc-arrow"></div></div>
 </section>
 
 <hr class="rule">
